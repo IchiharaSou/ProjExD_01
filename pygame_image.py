@@ -8,8 +8,9 @@ def main():
     clock  = pg.time.Clock()
     bg_img = pg.image.load("ex01/fig/pg_bg.jpg")
     kt_img = pg.image.load("ex01/fig/3.png") 
-    kt_img = pg.transform.flip(kt_img,True,False)
-    kt_imgs =[kt_img,pg.transform.rotozoom(kt_img,10,1.0)]
+    kt_img = pg.transform.flip(kt_img, True, False)
+    kt_imgs =[kt_img,pg.transform.rotozoom(kt_img, 10, 1.0)]
+    bg_imgs =[bg_img, pg.transform.flip(bg_img, True, False), bg_img]
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -17,11 +18,11 @@ def main():
 
        
         tmr += 1
-        x = tmr%1600
+        x = tmr%3200
 
-        screen.blit(bg_img, [-x, 0])
-
-        screen.blit(bg_img, [1600-x, 0])
+        
+        for i in range(3):
+            screen.blit(bg_imgs[i], [1600*i-x, 0])
         
         screen.blit(kt_imgs[tmr%2],[300,200])
 
